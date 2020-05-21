@@ -1,3 +1,7 @@
+// problems still to address:
+// -blocks can be rotated around the edge of the grid
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const grid = document.querySelector(".grid")
     let squares = Array.from(document.querySelectorAll(".grid div"))
@@ -72,10 +76,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.keyCode === 37) {
             moveLeft()
         } else if (e.keyCode === 38) {
-            //rotate
+            rotate()
         } else if (e.keyCode === 39) {
             moveRight()
-        } else if (e.keyCode === 38) {
+        } else if (e.keyCode === 40) {
             moveDown()
         }
     }
@@ -129,6 +133,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
         draw()
     }
+
+    //rotate the tetromino
+    function rotate() {
+        undraw()
+        currentRotation++
+        if (currentRotation === current.length) { //if the current rotation gets to 4, make it go back to 0
+            currentRotation = 0
+        }
+        current = theTetrominoes[random][currentRotation]
+        draw()
+    }
+
+
+
+
+
 
 
 
